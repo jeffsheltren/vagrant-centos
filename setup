@@ -2,12 +2,16 @@
 
 . ./vars.sh
 
+if [ ! -d "boxes" ]; then
+    mkdir boxes
+fi
+
 VBoxManage createvm --name ${NAME} --ostype ${TYPE} --register
 
 VBoxManage modifyvm ${NAME} \
     --vram 12 \
     --accelerate3d off \
-    --memory 613 \
+    --memory ${MEMORY_SIZE} \
     --usb off \
     --audio none \
     --boot1 disk --boot2 dvd --boot3 none --boot4 none \
@@ -24,9 +28,9 @@ VBoxManage modifyvm ${NAME} \
     --bioslogodisplaytime 0 \
     --biosbootmenu disabled
 
-VBoxManage createhd --filename "${HDD}" --size 8192
+VBoxManage createhd --filename "${HDD}" --size ${HDD_SIZE}
 # Swap is recommended to be double the size of RAM.
-VBoxManage createhd --filename "${HDD_SWAP}" --size 1226
+VBoxManage createhd --filename "${HDD_SWAP}" --size ${HDD_SWAP_SIZE}
 
 VBoxManage storagectl ${NAME} \
     --name SATA --add sata --portcount 2 --bootable on

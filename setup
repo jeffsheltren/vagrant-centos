@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash
 
 . ./vars.sh
 
@@ -16,9 +16,10 @@ VBoxManage modifyvm ${NAME} \
     --audio none \
     --boot1 disk --boot2 dvd --boot3 none --boot4 none \
     --nictype1 virtio --nic1 nat --natnet1 "${NATNET}" \
-    --nictype2 virtio \
+    --nictype2 virtio --nic2 hostonly \
     --nictype3 virtio \
     --nictype4 virtio \
+    --hostonlyadapter2 vboxnet1 \
     --acpi on --ioapic off \
     --chipset piix3 \
     --rtcuseutc on \
@@ -29,7 +30,6 @@ VBoxManage modifyvm ${NAME} \
     --biosbootmenu disabled
 
 VBoxManage createhd --filename "${HDD}" --size ${HDD_SIZE}
-# Swap is recommended to be double the size of RAM.
 VBoxManage createhd --filename "${HDD_SWAP}" --size ${HDD_SWAP_SIZE}
 
 VBoxManage storagectl ${NAME} \
@@ -75,7 +75,7 @@ IP=`echo ${NATNET} | sed -nE 's/^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*/\1/p'`
 setup_ruby
 
 echo 'At the boot prompt, hit <TAB> and then type:'
-/bin/echo -n " ks=http://${IP}.3:"
+/bin/echo -n " ksdevice=eth0 ks=http://${IP}.3:"
 ${RUBY_EXECUTABLE} httpd.rb ks.cfg
 
 echo "The box has accepted the kickstart file. It will now go through"

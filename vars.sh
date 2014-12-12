@@ -1,10 +1,10 @@
 NAME="centos66-x86_64"
 TYPE="RedHat_64"
-INSTALLER="./isos/CentOS-6.6-x86_64-netinstall.iso"
+INSTALLER="./isos/CentOS-6.6-x86_64-bin-DVD1.iso"
 GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
 HDD="${HOME}/VirtualBox VMs/${NAME}/main.vdi"
 HDD_SIZE=51200
 HDD_SWAP="${HOME}/VirtualBox VMs/${NAME}/swap.vdi"
-HDD_SWAP_SIZE=1024
-MEMORY_SIZE=1024
+HDD_SWAP_SIZE=2048
+MEMORY_SIZE=2048
 NATNET="10.0.10.0/24"

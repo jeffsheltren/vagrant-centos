@@ -1,6 +1,6 @@
-NAME="centos66-x86_64"
+NAME="centos67-x86_64"
 TYPE="RedHat_64"
-INSTALLER="./isos/CentOS-6.6-x86_64-bin-DVD1.iso"
+INSTALLER="./isos/CentOS-6.7-x86_64-netinstall.iso"
 GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
 HDD="${HOME}/VirtualBox VMs/${NAME}/main.vdi"
 HDD_SIZE=51200

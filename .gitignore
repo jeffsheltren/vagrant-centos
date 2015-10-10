@@ -1,2 +1,6 @@
-/isos/
+# Exclude isos/ directory, but ensure it exists.
+/isos/*
+!/isos/.keep
+
+# Exclude boxes/ output directory.
 /boxes/

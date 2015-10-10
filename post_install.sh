@@ -25,7 +25,7 @@ echo -n | tee /var/log/dmesg /var/log/maillog /var/log/lastlog \
 
 # Clear out swap partition in case it was used during install.
 swapuuid=$(blkid -o value -l -s UUID -t TYPE=swap)
-swappart=$(readlink -f /dev/disk/by-uuid/\$swapuuid)
+swappart=$(readlink -f /dev/disk/by-uuid/${swapuuid})
 
 swapoff $swappart
 dd if=/dev/zero of=$swappart bs=1M
